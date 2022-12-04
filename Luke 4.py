@@ -2,10 +2,11 @@ ranges_1 = []
 ranges_2 = []
 with open("input.txt",'r') as content:
         for line in content:
-            ranges_1.append(int(line.split(",")[0].split("-")[0]))
-            ranges_1.append(int(line.split(",")[0].split("-")[1]))
-            ranges_2.append(int(line.split(",")[1].split("-")[0]))
-            ranges_2.append(int(line.split(",")[1].split("-")[1]))
+            ranges_1.extend(line.split(",")[0].split("-"))
+            ranges_2.extend(line.split(",")[1].strip().split("-"))
+
+ranges_1 = [int(x) for x in ranges_1]
+ranges_2 = [int(x) for x in ranges_2]
 
 def check_for_subset(intervalls_1, intervalls_2):
     overlap = 0
