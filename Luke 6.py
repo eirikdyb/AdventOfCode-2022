@@ -14,8 +14,8 @@ def find_packet(liste):
 
 def find_msg(liste):
     for i in range(len(liste)-13):
-        next_four = liste[i:i+14]
-        if len(set(next_four)) == 14:
+        next_fourteen = liste[i:i+14]
+        if len(set(next_fourteen)) == 14:
             print(i+14)
             break
         
