@@ -5,7 +5,7 @@ def readfile():
     return code_list
 
 def find_unique_elements(string_list, numb):
-    for i in range(len(string_list)-numb-1):
+    for i in range(len(string_list)-(numb-1)):
         next_chars = string_list[i:i+numb]
         if len(set(next_chars)) == numb:
             print(i+numb)
