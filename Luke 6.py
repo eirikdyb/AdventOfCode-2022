@@ -4,21 +4,12 @@ def readfile():
         code_list = [*code]
     return code_list
 
-def find_packet(liste):
-    for i in range(len(liste)-3):
-        next_four = liste[i:i+4]
-        if len(set(next_four)) == 4:
-            print(i+4)
-            break
-
-
-def find_msg(liste):
-    for i in range(len(liste)-13):
-        next_fourteen = liste[i:i+14]
-        if len(set(next_fourteen)) == 14:
-            print(i+14)
+def find_unique_elements(string_list, numb):
+    for i in range(len(string_list)-numb-1):
+        next_chars = string_list[i:i+numb]
+        if len(set(next_chars)) == numb:
+            print(i+numb)
             break
         
-code_list = readfile()
-find_packet(code_list)
-find_msg(code_list)
+find_unique_elements(readfile(), 4)
+find_unique_elements(readfile(), 14)
