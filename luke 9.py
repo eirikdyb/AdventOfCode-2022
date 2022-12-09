@@ -8,16 +8,19 @@ def readfile():
 
 
 def update_head(h_pos,line):
-    
+    h_x = h_pos[0]
+    h_y = h_pos[1]
     if line[0] == 'R': #right
-        h_pos[0] += 1
+        h_x += 1
     elif line[0] == 'L': #left
-        h_pos[0] -= 1
+        h_x -= 1
     elif line[0] == 'U': #up
-        h_pos[1] += 1
+        h_y += 1
     elif line[0] == 'D': #down
-        h_pos[1] -= 1
-        
+        h_y -= 1
+    
+    h_pos[0] = h_x
+    h_pos[1] = h_y
     return h_pos
 
 def update_tail(h_pos,t_pos):
@@ -79,12 +82,14 @@ def find_unique_pos(list_of_coord): #Find number of unique elements in list
                 break
         if add:
             uni_pos.append(coord)
+            
     return len(uni_pos)
 
 def create_rope(rope_length):
     rope_pos = []
     for i in range(rope_length):
         rope_pos.append([0,0])
+        
     return rope_pos
 
 def tail_history(data,rope):
@@ -95,6 +100,7 @@ def tail_history(data,rope):
             for j in range(1,len(rope)):
                 rope[j] = update_tail(rope[j-1], rope[j])
             t_pos_hist.append([rope[-1][0],rope[-1][1]])
+            
     return t_pos_hist
 
 #print(find_unique_pos(tail_history(readfile(), create_rope(10))))
