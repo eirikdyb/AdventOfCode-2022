@@ -6,7 +6,6 @@ def readfile():
 
     return data
 
-
 def update_head(h_pos,line):
     h_x = h_pos[0]
     h_y = h_pos[1]
@@ -21,6 +20,7 @@ def update_head(h_pos,line):
     
     h_pos[0] = h_x
     h_pos[1] = h_y
+    
     return h_pos
 
 def update_tail(h_pos,t_pos):
