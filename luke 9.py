@@ -26,43 +26,47 @@ def update_tail(h_pos,t_pos):
     t_x = t_pos[0]
     t_y = t_pos[1]
     if t_x == h_x and h_y == t_y + 2: #up
-        t_pos[1] += 1
+        t_y += 1
     elif t_x == h_x and h_y == t_y -2: #down
-        t_pos[1] -=1
+        t_y -=1
     elif t_y == h_y and h_x == t_x + 2: #right
-        t_pos[0] +=1
+        t_x +=1
     elif t_y == h_y and h_x == t_x -2: #left
-        t_pos[0] -=1
+        t_x -=1
     
     elif h_x -1 <= t_x <= h_x +1 and h_y - 1 <= t_y <= h_y +1: #stay still
         return t_pos
     
     elif h_x == t_x +1 and h_y == t_y + 2 or (h_x == t_x +2 and h_y == t_y +1): #up right
-        t_pos[0] += 1
-        t_pos[1] +=1
+        t_x += 1
+        t_y +=1
     elif h_x == t_x -1 and h_y == t_y + 2 or (h_x == t_x -2 and h_y==t_y +1): #up left
-        t_pos[0] -= 1
-        t_pos[1] +=1
+        t_x -= 1
+        t_y +=1
     elif h_x == t_x + 1 and h_y == t_y - 2 or (h_x == t_x + 2 and h_y == t_y - 1): #down right
-        t_pos[0] += 1
-        t_pos[1] -= 1
+        t_x += 1
+        t_y -= 1
     elif h_x == t_x -1 and h_y == t_y - 2 or (h_x == t_x -2 and h_y == t_y - 1): #down left
-        t_pos[0] -= 1
-        t_pos[1] -= 1
+        t_x -= 1
+        t_y -= 1
         
     #part 2 moves
     if h_x == t_x + 2 and h_y == t_y + 2: #up right
-        t_pos[0] += 1
-        t_pos[1] += 1
+        t_x += 1
+        t_y += 1
     elif h_x == t_x + 2 and h_y == t_y - 2:#down right
-        t_pos[0] += 1
-        t_pos[1] -= 1
+        t_x += 1
+        t_y -= 1
     elif h_x == t_x - 2 and h_y == t_y + 2: #up left
-        t_pos[0] -= 1
-        t_pos[1] += 1
+        t_x -= 1
+        t_y += 1
     elif h_x == t_x - 2 and h_y == t_y - 2: #down left
-        t_pos[0] -= 1
-        t_pos[1] -= 1
+        t_x -= 1
+        t_y -= 1
+        
+    t_pos[0] = t_x
+    t_pos[1] = t_y
+    
     return t_pos
 
 def find_unique_pos(list_of_coord): #Find number of unique elements in list
@@ -93,6 +97,7 @@ def tail_history(data,rope):
             t_pos_hist.append([rope[-1][0],rope[-1][1]])
     return t_pos_hist
 
+#print(find_unique_pos(tail_history(readfile(), create_rope(10))))
 data = readfile()
 rope_length = 10 #part 1: 2 part2: 10
 rope = create_rope(rope_length)
