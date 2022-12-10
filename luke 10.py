@@ -14,11 +14,11 @@ def increase_signal_strength(sig_strength, cycle,value):
 
 #part 2 func
 def create_monitor(width, height):
-    height_list = []
+    monitor_list = []
     for i in range(height):
         for j in range(width):
-            height_list.append(".")
-    return height_list
+            monitor_list.append(".")
+    return monitor_list
 
 def print_monitor_to_txt(screen, width):
     new_screen = []
