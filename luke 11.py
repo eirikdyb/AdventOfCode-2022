@@ -1,4 +1,3 @@
-import time
 def readfile():
     data = []
     item_list = []
@@ -38,8 +37,6 @@ def readfile():
                         false_list.append(int(element))
     return item_list, operators, div_test, true_list, false_list, value
 
-
-
 def update_worry_level(worry_level, operator, value):
     if value == "old":
         value = worry_level
@@ -66,31 +63,21 @@ def monkey_round(items, operators, value, true_list, false_list, inspect_list,di
         for j in range(len(items[i])):
             worry_level = update_worry_level(items[i][j], operators[i],value[i])
             inspect_list[i] += 1
+            worry_level = worry_level % product_of_divisors(div_test)
             if worry_level % div_test[i] == 0:
-                while worry_level > product_of_divisors(div_test):
-                    worry_level = worry_level % product_of_divisors(div_test)
                 items[true_list[i]].append(worry_level)
             else:
-                while worry_level > product_of_divisors(div_test):
-                    worry_level = worry_level % product_of_divisors(div_test)
                 items[false_list[i]].append(worry_level)
         items[i] = []
     return items, inspect_list
 
 items, operators, div_test, true_list, false_list,value = readfile()
-
 rounds = 10000
 inspect_list = []
 for i in range(len(items)):
     inspect_list.append(0)
 
-start_time = time.time()
 for i in range(rounds):
     items,inspect_list = monkey_round(items, operators,value, true_list,false_list,inspect_list,div_test)
-    print(i)
-print(time.time() - start_time)
 
-print(inspect_list)
-inspect_list.sort()
-print(inspect_list)
 print(inspect_list[-2]*inspect_list[-1])
