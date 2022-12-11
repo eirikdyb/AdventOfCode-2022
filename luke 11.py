@@ -80,4 +80,5 @@ for i in range(len(items)):
 for i in range(rounds):
     items,inspect_list = monkey_round(items, operators,value, true_list,false_list,inspect_list,div_test)
 
+inspect_list.sort()
 print(inspect_list[-2]*inspect_list[-1])
