@@ -45,12 +45,6 @@ def update_worry_level(worry_level, operator, value):
     elif operator == "*":
         worry_level *= value
     return worry_level #//3 for part 1
-
-def modulo(worry_level, value, divisor,operator):
-        if operator == "+":
-            return (worry_level % divisor + value % divisor) % divisor
-        elif operator == "*":
-            return (worry_level % divisor * value % divisor) % divisor
         
 def product_of_divisors(divisors):
     prod = 1
