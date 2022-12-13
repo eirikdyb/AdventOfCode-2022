@@ -1,3 +1,4 @@
+import ast
 def readfile():
     data = []
     new_data = []
@@ -8,7 +9,7 @@ def readfile():
             else:
                 data.append(line.split())
     for lines in data:
-        new_data.append(eval(lines[0]))
+        new_data.append(ast.literal_eval(lines[0]))
     return new_data
 
 def compare_list_and_list(A, B):
