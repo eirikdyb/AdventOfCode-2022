@@ -1,3 +1,4 @@
+import time
 def readfile():
     data = []
     new_data = []
@@ -11,7 +12,6 @@ def readfile():
                 coord.append([int(data[i][j].split(",")[0]),int(data[i][j].split(",")[1])])
         new_data.append(coord)
     return new_data
-
 
 def create_cord_all_rocks(rock_map):
     diff = 0
@@ -34,7 +34,17 @@ def create_cord_all_rocks(rock_map):
     for line in rock_map:
         for rock in line:
             all_rocks.append(rock)
-    return all_rocks
+    y_coord = []
+    for elements in all_rocks:
+        y_coord.append(elements[1])
+    y_max = max(y_coord)
+    rocky = []
+    for i in range(y_max+2):
+        rocky.append([])
+    for rockz in all_rocks:
+        rocky[rockz[1]].append(rockz)
+    
+    return all_rocks, rocky
 
 def sand_move(sand_pos,all_rocks, floor, part):
     new_pos = [[sand_pos[0],sand_pos[1]+1],[sand_pos[0]-1,sand_pos[1]+1],[sand_pos[0]+1,sand_pos[1]+1]]
@@ -45,17 +55,17 @@ def sand_move(sand_pos,all_rocks, floor, part):
             return sand_pos, False
         
     for i in range(len(new_pos)):
-        if new_pos[i] not in all_rocks:
+        if new_pos[i] not in all_rocks[new_pos[i][1]]:
             pos = new_pos[i]
             return pos, True
         else:
             counter += 1
     if counter == 3:
         return sand_pos, False
-    
+seconds = time.time()
 part = 2
 rock_coord = readfile()
-rock_map = create_cord_all_rocks(rock_coord)
+rock_map, other_rock_map = create_cord_all_rocks(rock_coord)
 y_coord = []
 for elements in rock_map:
     y_coord.append(elements[1])
@@ -68,7 +78,7 @@ while a:
     counter = 0
     run = True
     while run:
-        sand, run = sand_move(sand,rock_map, y_lim  + 2, part)
+        sand, run = sand_move(sand,other_rock_map, y_lim  + 2, part)
         if part == 2:
             if sand == [500,0]:
                 a = False
@@ -78,9 +88,10 @@ while a:
                 a = False
                 break
     sand_list.append(sand)
-    rock_map.append(sand)
+    other_rock_map[sand[1]].append(sand)
     
 if part == 1:
     print(len(sand_list)-1)
 elif part == 2:
     print(len(sand_list)) 
+print(time.time()-seconds)
