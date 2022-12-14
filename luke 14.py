@@ -56,8 +56,7 @@ def sand_move(sand_pos,all_rocks, floor, part):
         
     for i in range(len(new_pos)):
         if new_pos[i] not in all_rocks[new_pos[i][1]]:
-            pos = new_pos[i]
-            return pos, True
+            return new_pos[i], True
         else:
             counter += 1
             if counter == 3:
