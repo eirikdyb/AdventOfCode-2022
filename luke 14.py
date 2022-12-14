@@ -68,11 +68,11 @@ sand_list = []
 sand = [500,0]
 
 if part == 1:
-    statement = 'sand[1] < y_lim'
+    condition = 'sand[1] < y_lim'
 elif part == 2:
-    statement = 'sand_move(sand,other_rock_map, y_lim  + 2, part) != [500,0]'
+    condition = 'sand_move(sand,other_rock_map, y_lim  + 2, part) != [500,0]'
     
-while eval(statement):
+while eval(condition):
     sand = [500,0]
     sand = sand_move(sand,other_rock_map, y_lim  + 2, part)
     sand_list.append(sand)
