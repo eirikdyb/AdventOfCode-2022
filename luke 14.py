@@ -60,8 +60,9 @@ def sand_move(sand_pos,all_rocks, floor, part):
             return pos, True
         else:
             counter += 1
-    if counter == 3:
-        return sand_pos, False
+            if counter == 3:
+                return sand_pos, False
+
 seconds = time.time()
 part = 2
 rock_coord = readfile()
