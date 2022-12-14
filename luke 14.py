@@ -43,44 +43,38 @@ def create_cord_all_rocks(rock_map):
         rocky.append([])
     for rockz in all_rocks:
         rocky[rockz[1]].append(rockz) #list rocks by y-coord
-    
     return all_rocks, rocky
 
 def sand_move(sand_pos,all_rocks, floor, part):
     new_pos = [[sand_pos[0],sand_pos[1]+1],[sand_pos[0]-1,sand_pos[1]+1],[sand_pos[0]+1,sand_pos[1]+1]]
-    if part == 2:
-        if sand_pos[1] == floor - 1:
-            return sand_pos, False
-        
+    if sand_pos[1] == floor-1:
+        return sand_pos
     counter = 0 
     for i in range(len(new_pos)):
         if new_pos[i] not in all_rocks[new_pos[i][1]]:
-            return new_pos[i], True
+            return sand_move(new_pos[i],all_rocks, floor, part)
         else:
             counter += 1
             if counter == 3:
-                return sand_pos, False
+                return sand_pos
 
 seconds = time.time()
-part = 2
+part = 1
 rock_coord = readfile()
 rock_map, other_rock_map = create_cord_all_rocks(rock_coord)
 y_lim = len(other_rock_map) - 2
 a = True
 sand_list = []
-while a:
+sand = [500,0]
+
+if part == 1:
+    statement = 'sand[1] < y_lim'
+elif part == 2:
+    statement = 'sand_move(sand,other_rock_map, y_lim  + 2, part) != [500,0]'
+    
+while eval(statement):
     sand = [500,0]
-    run = True
-    while run:
-        sand, run = sand_move(sand,other_rock_map, y_lim  + 2, part)
-        if part == 2:
-            if sand == [500,0]:
-                a = False
-                break
-        elif part == 1:
-            if sand[1] > y_lim:
-                a = False
-                break
+    sand = sand_move(sand,other_rock_map, y_lim  + 2, part)
     sand_list.append(sand)
     other_rock_map[sand[1]].append(sand)
     
