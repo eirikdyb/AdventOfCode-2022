@@ -33,7 +33,7 @@ def create_cord_all_rocks(rock_map):
     all_rocks = []
     for line in rock_map:
         for rock in line:
-            all_rocks.append(rock)
+            all_rocks.append(rock) #rocks in no order
     y_coord = []
     for elements in all_rocks:
         y_coord.append(elements[1])
@@ -42,18 +42,17 @@ def create_cord_all_rocks(rock_map):
     for i in range(y_max+2):
         rocky.append([])
     for rockz in all_rocks:
-        rocky[rockz[1]].append(rockz)
+        rocky[rockz[1]].append(rockz) #list rocks by y-coord
     
     return all_rocks, rocky
 
 def sand_move(sand_pos,all_rocks, floor, part):
     new_pos = [[sand_pos[0],sand_pos[1]+1],[sand_pos[0]-1,sand_pos[1]+1],[sand_pos[0]+1,sand_pos[1]+1]]
-    
-    counter = 0
     if part == 2:
         if sand_pos[1] == floor - 1:
             return sand_pos, False
         
+    counter = 0 
     for i in range(len(new_pos)):
         if new_pos[i] not in all_rocks[new_pos[i][1]]:
             return new_pos[i], True
@@ -66,16 +65,11 @@ seconds = time.time()
 part = 2
 rock_coord = readfile()
 rock_map, other_rock_map = create_cord_all_rocks(rock_coord)
-y_coord = []
-for elements in rock_map:
-    y_coord.append(elements[1])
-y_lim = max(y_coord)
-sand = [500,0]
+y_lim = len(other_rock_map) - 2
 a = True
 sand_list = []
 while a:
     sand = [500,0]
-    counter = 0
     run = True
     while run:
         sand, run = sand_move(sand,other_rock_map, y_lim  + 2, part)
