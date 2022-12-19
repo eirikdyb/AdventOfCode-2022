@@ -100,14 +100,14 @@ for i in range(min_values[2],max_values[2]+1):
                 break
             if [x,y] not in non_cubes:
                 non_cubes.append([x,y]) 
-    for x in range(-2,max_values[1]+2):
-        for y in range(max_values[0]+2,-2,-1):
+    for x in range(-2,max_values[0]+2):
+        for y in range(max_values[1]+2,-2,-1):
             if [x,y] in cubes_to_check:
                 break
             if [x,y] not in non_cubes:
                 non_cubes.append([x,y])
-    for x in range(-2,max_values[1]+2):
-        for y in range(-2,max_values[0]+2):
+    for x in range(-2,max_values[0]+2):
+        for y in range(-2,max_values[1]+2):
             if [x,y] in cubes_to_check:
                 break
             if [x,y] not in non_cubes:
