@@ -8,7 +8,7 @@ def readfile():
     min_x = 10000
     min_y = 10000
     min_z = 10000
-    with open("input.txt",'r') as content:
+    with open("input_vetle.txt",'r') as content:
         for lines in content:
             data.append([int(x) for x in lines.strip().split(",")])
             if  int(lines.strip().split(",")[0]) > max_x:
@@ -138,6 +138,7 @@ print("----------------")
 print("removing cubes:")
 
 remove_list = []
+surface_removal = []
 #Removes air if not all neighbours are air or stone
 for coord in air_coords:
     neighbourz = find_2d_neighbours(coord)
@@ -156,6 +157,7 @@ for cube in air_coords:
         if next_cube not in air_coords and next_cube not in cubes:
             print(cube)
             remove_list.append(cube)
+            surface_removal.append(cube)
             break
             
 #check for air over
@@ -167,13 +169,21 @@ for cube in air_coords:
         if next_cube not in air_coords and next_cube not in cubes:
             print(cube)
             remove_list.append(cube)
+            surface_removal.append(cube)
             break
 
+for cube in air_coords: #Should check all clusters in surface_removal
+    if cube not in remove_list:
+        neigh = find_neighbours(cube)
+        for coord in neigh:
+            if coord in surface_removal:
+                print(cube)
+                remove_list.append(cube)
 
 for elements in remove_list:
     if elements in air_coords:
-        air_coords.remove(elements) 
-        
+        air_coords.remove(elements)
+
 counter = 0
 for cube in air_coords:
     neigh = find_neighbours(cube)
