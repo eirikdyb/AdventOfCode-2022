@@ -82,24 +82,26 @@ for roots in root_monkeys:  # Find which part of root that doesnt lead to humn
 root_human = monkeys[sum_monkey] #Choose human such that other part of root is equal
 # Solving root_human = a + b, root_human = a - b, root_human = a*b and root_human = a/b for a and b
 for elements in operator_list:
+    a = monkeys[elements[0]]
+    b = monkeys[elements[2]]
     if elements[0] in human_path:   #solve for a
-        if elements[1] == "+":  # a =root_human -b
-            root_human =root_human - monkeys[elements[2]]
-        elif elements[1] == "-":  # a = root_human +b
-            root_human = root_human + monkeys[elements[2]]
-        elif elements[1] == "*":  # a = root_human/b
-            root_human = int(root_human/monkeys[elements[2]])
-        elif elements[1] == "/":  # a = root_human*b
-            root_human = root_human * monkeys[elements[2]]
+        if elements[1] == "+":
+            root_human =root_human - b
+        elif elements[1] == "-":
+            root_human = root_human + b
+        elif elements[1] == "*":
+            root_human = int(root_human/b)
+        elif elements[1] == "/":
+            root_human = root_human * b
     elif elements[2] in human_path:   #solve for b
-        if elements[1] == "+":  # b = root_human -a
-            root_human = root_human - monkeys[elements[0]]
-        elif elements[1] == "-":  # b= a - root_human
-            root_human = monkeys[elements[0]] - root_human
-        elif elements[1] == "*":  # b = root_human/a
-            root_human = int(root_human/monkeys[elements[0]])
-        elif elements[1] == "/":  # b = a/root_human
-            root_human = int(monkeys[elements[0]]/root_human)
+        if elements[1] == "+":
+            root_human = root_human - a
+        elif elements[1] == "-":
+            root_human = a - root_human
+        elif elements[1] == "*":
+            root_human = int(root_human/a)
+        elif elements[1] == "/":
+            root_human = int(a/root_human)
 
 print(f"Part two: {root_human}")
 
