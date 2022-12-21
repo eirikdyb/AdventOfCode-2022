@@ -28,8 +28,6 @@ def readfile():
     return monkey_dict
 
 def find_next_value(monkey, monkey_dict):
-    if isinstance(monkey, list):
-        monkey = monkey[0]
     if isinstance(monkey_dict[monkey], list):
         return [monkey_dict[monkey][0], monkey_dict[monkey][2]]
     else:
