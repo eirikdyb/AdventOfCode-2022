@@ -27,12 +27,6 @@ def readfile():
         monkey_dict[elements[0]] = [elements[1], elements[2], elements[3]]
     return monkey_dict
 
-def find_next_value(monkey, monkey_dict):
-    if isinstance(monkey_dict[monkey], list):
-        return [monkey_dict[monkey][0], monkey_dict[monkey][2]]
-    else:
-        return monkey_dict[monkey]
-
 def find_human_path(monkey_dict):
     path = ['humn']
     operator = []
